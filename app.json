@@ -1,6 +1,17 @@
 {
   "expo": {
+    "icon": "./assets/images/logo_aplikasi.png",
     "scheme": "acme",
-    "web": { "bundler": "metro" }
+    "web": {
+      "bundler": "metro"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "c7f1dd11-26ee-4ae8-8671-d4d15f63bbda"
+      }
+    },
+    "android": {
+      "package": "com.qibro.qoming"
+    }
   }
 }
