@@ -10,7 +10,6 @@ const defaultOptions = {
     backgroundColor: Colors.purple,
   },
   headerLeft: () => <View />,
-  title: 'QUIZ',
 };
 
 export default function () {

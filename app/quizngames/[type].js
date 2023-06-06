@@ -3,7 +3,7 @@ import {
   StyleSheet, Text, TouchableOpacity, View,
 } from 'react-native';
 import React, { useEffect, useState } from 'react';
-import { useRouter, useSearchParams } from 'expo-router';
+import { useNavigation, useRouter, useSearchParams } from 'expo-router';
 import { Audio } from 'expo-av';
 import { Colors, GlobalStyle } from '../../constant';
 import { questions } from './questions';
@@ -11,6 +11,7 @@ import { quizAudio } from '../../assets/audio';
 
 const quiz = () => {
   const router = useRouter();
+  const navigation = useNavigation();
   const { type } = useSearchParams();
   const [number, setNumber] = useState(0);
   const [question, setQuestion] = useState(questions[type][number]);
@@ -18,6 +19,10 @@ const quiz = () => {
   const [active, setActive] = useState(true);
   const [selected, setSelected] = useState();
   const [audio, setAudio] = useState();
+
+  useEffect(() => {
+    navigation.setOptions({ title: type?.toUpperCase() });
+  }, [type]);
 
   const playSound = async () => {
     const { sound } = await Audio.Sound.createAsync(quizAudio);
@@ -49,7 +54,7 @@ const quiz = () => {
   };
 
   const onNext = () => {
-    if (selected) {
+    if (selected !== null) {
       setNumber(number + 1);
       setActive(true);
       setSelected();

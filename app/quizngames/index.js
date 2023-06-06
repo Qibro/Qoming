@@ -1,15 +1,21 @@
 import {
   Image, SafeAreaView, StyleSheet, Text, TouchableOpacity, View,
 } from 'react-native';
-import React from 'react';
-import { useRouter, useSearchParams } from 'expo-router';
+import React, { useEffect } from 'react';
+import { useNavigation, useRouter, useSearchParams } from 'expo-router';
 import YoutubePlayer from 'react-native-youtube-iframe';
 import { Colors, GlobalStyle } from '../../constant';
 import { logoAplikasi } from '../../assets/images';
 
 const index = () => {
   const router = useRouter();
+  const navigation = useNavigation();
   const { type } = useSearchParams();
+
+  useEffect(() => {
+    navigation.setOptions({ title: type?.toUpperCase() });
+  }, [type]);
+
   return (
     <SafeAreaView style={styles.container}>
       {type === 'quiz' &&
